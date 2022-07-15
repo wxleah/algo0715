@@ -1,0 +1,24 @@
+### 思路
+1. 将整数加到数组最后一位即个位，取余作为个位
+2. 加和结果的整除结果进位，加到数组下一位
+
+### 代码
+```python
+class Solution:
+    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
+        res = []
+        n = len(num)
+        i = n - 1
+        while i >= 0 or k > 0:
+            if i >= 0:
+                k += num[i]
+            res.append(k % 10)
+            i -= 1
+            k //= 10
+        res.reverse()
+        return res
+```
+
+### 复杂度分析
+- 时间复杂度：O(max(n, logk)，其中 n 为数组长度。（k有logk位数）
+- 空间复杂度：O(1)
